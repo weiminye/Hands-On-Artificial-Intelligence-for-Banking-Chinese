@@ -100,29 +100,20 @@ for edge in edge_list:
 f_vertex.close()
 
 '''
-将使用Neo4j云服务，即Neo4j Aura导入
+将使用Neo4j云服务，即Neo4j Aura导入，参考文档：https://neo4j.com/docs/aura/current/getting-started/importing-data/
 
-step3: use the browser to go to the neo4j server
-http://localhost:7474/browser/
-https://neo4j.com/developer/guide-importing-data-and-etl/#_exporting_the_data_to_csv
-
-step4: run the following scripts at neo4j browser
-MATCH (n) DETACH DELETE n;
-
-USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:///node.csv" AS row
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/main/%E7%AC%AC7%E7%AB%A0/%E4%BE%8B%E5%AD%902%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%85%AC%E5%91%8A/%E8%8B%B1%E6%96%87%E5%8E%9F%E7%89%88%E4%BE%8B%E5%AD%90/node.csv" AS row
 CREATE (:ENTITY {node: row.nodename});
 
 CREATE INDEX ON :ENTITY(node);
 
-
-USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:///edge.csv" AS row
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/main/%E7%AC%AC7%E7%AB%A0/%E4%BE%8B%E5%AD%902%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%85%AC%E5%91%8A/%E8%8B%B1%E6%96%87%E5%8E%9F%E7%89%88%E4%BE%8B%E5%AD%90/edge.csv" AS row
 MATCH (vertex1:ENTITY {node: row.nodename1})
 MATCH (vertex2:ENTITY {node: row.nodename2})
 MERGE (vertex1)-[:LINK]->(vertex2);
 
+通过上面语句导入数据之后，执行下面语句查看数据
 MATCH (n:ENTITY)-[:LINK]->(ENTITY) RETURN n;
 
-'''
 
+'''
