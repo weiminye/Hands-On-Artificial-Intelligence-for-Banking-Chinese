@@ -6,9 +6,9 @@
 pip install en_core_web_lg-3.2.0-py3-none-any.whl
 ```
 
-然后按照类似的方法安装**zh-core-web-trf**
+然后按照类似的方法安装**zh_core_web_sm**
 ```
-pip install zh_core_web_trf-3.2.0-py3-none-any.whl
+pip install zh_core_web_sm-3.2.0-py3-none-any.whl
 ```
 
 可以参考 https://blog.csdn.net/WZY31014332886/article/details/104605887/
