@@ -1,25 +1,12 @@
 '''
 将使用Neo4j云服务，即Neo4j Aura导入，参考文档：https://neo4j.com/docs/aura/current/getting-started/importing-data/
 
-如果有需要，可以先使用下面的命令清空测试数据（不建议删除和重建数据库，因为比较耗时）：
-MATCH (n) DETACH DELETE n;
+这个例子因为要用到上一个例子的数据，所以请不要清空数据。
 
 使用如下命令导入数据：
 
-LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/main/%E7%AC%AC9%E7%AB%A0/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/%E5%AE%A2%E6%88%B7.csv" AS row
-CREATE (c:客户 {客户id: row.客户});
-
-LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/main/%E7%AC%AC9%E7%AB%A0/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/%E4%BA%A7%E5%93%81.csv" AS row
-CREATE (p:产品 {产品名称: row.产品});
-
-LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/main/%E7%AC%AC9%E7%AB%A0/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/%E8%BE%B9.csv" AS line
-WITH line
-MATCH (c:客户 {客户id:line.客户})
-MATCH (p:产品 {产品名称:line.产品})
-MERGE (c)-[:拥有 {类型:line.类型, 值:toInteger(line.值)}]->(p)
-RETURN count(*);
-
-MATCH (c)-[cp]->(p) RETURN c,cp,p;
+CREATE p =(a:输入词 {值:'咨询'}) - [:同义词] -> (b:关键词 {值:'查询'}) <-  [:近义词] - (c:输入词 {值:'问'}) - [:近义词 {前提条件:'对前面的答案有怀疑'}] -> (d:关键词 {值:'不相信'})
+RETURN p
 
 cheatsheet:
 https://gist.github.com/DaniSancas/1d5265fc159a95ff457b940fc5046887
@@ -36,6 +23,8 @@ logger.setLevel(logging.ERROR)
 uri = "neo4j+s://1144f8d0.databases.neo4j.io:7687"
 driver = GraphDatabase.driver(uri, auth=("neo4j", "VPrCeTO-8CzYElUogkj45D4Ec0x454oBgAqHIjHZG4k")) #enter your neo4j username and password instead of 'test'
 session = driver.session()
+
+同义词近义词图数据库查询用语句 = ("match (x)-[r:`近义词`]-(y {值: $输入词 }) where r.前提条件 is null return x.值 union match (x)-[r:`同义词`]-(y {值:$输入词}) return x.值")
 
 图数据库查询用语句 = ("MATCH (c:`客户`)-[r:`拥有`]->(p:`产品`) " 
     "WHERE c.`客户id` = $customerid AND p.`产品名称` = $productname " 
@@ -63,6 +52,12 @@ nlp = spacy.load('zh_core_web_sm')
 tokens_products = nlp(' '.join(product for product in 产品列表))
 tokens_intent = nlp(' '.join(intent for intent in 意图列表))
 tokens_attribute = nlp(' '.join(attribute for attribute in 属性列表))
+
+def 根据输入查询关键词(tx, query, 输入词):
+    result_list=[]
+    for record in tx.run(query, 输入词=输入词):
+        result_list.append(record[0])
+    return result_list
 
 #define relevant functions to execute differnet queries
 def run_query(tx, query, cid, product, attribute,attribute_val):
@@ -94,9 +89,18 @@ def intent_entity_attribute_extraction(nlp, sentence, tokens_intent, tokens_prod
     print('分词结果为:', tokens_str)
 
     for token in tokens:
+        results = session.read_transaction(根据输入查询关键词, 同义词近义词图数据库查询用语句, token.text)
+        if len(results) == 1:
+            意图关键词 = results[0]
+        else:
+            意图关键词 = token.text
+        
+        if 意图关键词 in 意图列表:
+            final_intent = 意图关键词
+            print('因为“',token.text,'”是意图关键词“',意图关键词,'”的同义词/近义词，所以AI认为当前用户意图是“' + intent.text + '”。')
+
         for intent in tokens_intent:            
             curr_intent_score = token.similarity(intent)
-            print(token.text,'与',intent.text,'的相似度为:', curr_intent_score)
             之前的意图分数最高值 = intent_score
             if curr_intent_score > intent_score and curr_intent_score > threshold:
                 intent_score = curr_intent_score
