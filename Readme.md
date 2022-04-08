@@ -4,6 +4,11 @@
 - 例子2：技术讲解视频：[基于Neo4J知识图谱的聊天机器人](https://www.bilibili.com/video/BV13S4y1P7X2?spm_id_from=333.999.0.0) 。相关源代码：[第9章/聊天机器人/原书例子汉化版.py](https://github.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/blob/main/%E7%AC%AC9%E7%AB%A0/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/%E5%8E%9F%E4%B9%A6%E4%BE%8B%E5%AD%90%E6%B1%89%E5%8C%96%E7%89%88.py) 。
 - 例子3：技术讲解视频：[基于Neo4J知识图谱的聊天机器人 - 支持同义词近义词](https://www.bilibili.com/video/BV1YZ4y1U7g6?spm_id_from=333.999.0.0) 。相关源代码：[第9章/聊天机器人/支持同义词和近义词.py](https://github.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/blob/main/%E7%AC%AC9%E7%AB%A0/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/%E6%94%AF%E6%8C%81%E5%90%8C%E4%B9%89%E8%AF%8D%E5%92%8C%E8%BF%91%E4%B9%89%E8%AF%8D.py) 。
 
+## 风险提示：
+
+1. 其中的可解释信息目前业界尚在探索，目前尚没有理想的方案，所有人都在摸索，因此仅供参考。
+2. 例子4、例子5因为涉及某具体上市公司，出于降低风险的考虑，现已删除。
+
 # 注意事项
 
 需要下载 https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.2.0/en_core_web_lg-3.2.0-py3-none-any.whl 到本地然后用如下命令安装
