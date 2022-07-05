@@ -18,7 +18,7 @@
 
 # 技术讲解视频
 
-- 第7章例子2：技术讲解视频：[上市公司年报分析](https://www.bilibili.com/video/BV1vr4y1p7p5?spm_id_from=333.999.0.0) 。相关源代码：[第7章/例子2上市公司公告之年报/第7章第2个例子一气呵成版.py](https://github.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/blob/main/%E7%AC%AC7%E7%AB%A0/%E4%BE%8B%E5%AD%902%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%85%AC%E5%91%8A%E4%B9%8B%E5%B9%B4%E6%8A%A5/%E7%AC%AC7%E7%AB%A0%E7%AC%AC2%E4%B8%AA%E4%BE%8B%E5%AD%90%E4%B8%80%E6%B0%94%E5%91%B5%E6%88%90%E7%89%88.py) 。
+- 第7章例子2：技术讲解视频：[上市公司年报分析](https://www.bilibili.com/video/BV1vr4y1p7p5?spm_id_from=333.999.0.0) 。相关源代码：[第7章/例子2上市公司公告之年报/第7章第2个例子一气呵成版.py](https://github.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/blob/main/%E7%AC%AC7%E7%AB%A0/%E4%BE%8B%E5%AD%902%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%85%AC%E5%91%8A%E4%B9%8B%E5%B9%B4%E6%8A%A5/%E7%AC%AC7%E7%AB%A0%E7%AC%AC2%E4%B8%AA%E4%BE%8B%E5%AD%90%E4%B8%80%E6%B0%94%E5%91%B5%E6%88%90%E7%89%88.py) 。[spaCy支持中文](https://www.bilibili.com/video/BV14G411x7vP)
 - 第9章聊天机器人例子：技术讲解视频：[基于Neo4J知识图谱的聊天机器人](https://www.bilibili.com/video/BV13S4y1P7X2?spm_id_from=333.999.0.0) 。相关源代码：[第9章/聊天机器人/原书例子汉化版.py](https://github.com/weiminye/Hands-On-Artificial-Intelligence-for-Banking-Chinese/blob/main/%E7%AC%AC9%E7%AB%A0/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/%E5%8E%9F%E4%B9%A6%E4%BE%8B%E5%AD%90%E6%B1%89%E5%8C%96%E7%89%88.py) 。
 
 ## 风险提示：
@@ -58,6 +58,7 @@ pip install zh_core_web_sm-3.2.0-py3-none-any.whl
 方法2：修改分词库
 方法3：自定义命名实体规则
 
+参见[spaCy支持中文](https://www.bilibili.com/video/BV14G411x7vP)
 
 # 做中文项目所需要用到的
 
