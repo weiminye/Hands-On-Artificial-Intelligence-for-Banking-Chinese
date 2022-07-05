@@ -38,13 +38,25 @@
 pip install en_core_web_lg-3.2.0-py3-none-any.whl
 ```
 
-如果需要中文，则按照类似的方法去https://github.com/explosion/spacy-models/releases/ 下载对应的预训练模型到本地再进行安装。
+如果需要中文，则按照类似的方法去 https://github.com/explosion/spacy-models/releases/tag/zh_core_web_sm-3.3.0 下载对应的预训练模型到本地再进行安装。
 
 ```
 pip install zh_core_web_sm-3.2.0-py3-none-any.whl
 ```
 
 可以参考 https://blog.csdn.net/WZY31014332886/article/details/104605887/
+
+如果对中文支持效果不好，有三种方法：
+
+方法1：换一个预训练模型，你可以把如下四个预训练模型都试一遍：
+
+- https://github.com/explosion/spacy-models/releases/tag/zh_core_web_sm-3.3.0
+- https://github.com/explosion/spacy-models/releases/tag/zh_core_web_md-3.3.0
+- https://github.com/explosion/spacy-models/releases/tag/zh_core_web_lg-3.3.0
+- https://github.com/explosion/spacy-models/releases/tag/zh_core_web_trf-3.3.0
+
+方法2：
+
 
 # 做中文项目所需要用到的
 
