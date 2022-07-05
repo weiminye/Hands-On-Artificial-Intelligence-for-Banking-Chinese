@@ -55,7 +55,8 @@ pip install zh_core_web_sm-3.2.0-py3-none-any.whl
 - https://github.com/explosion/spacy-models/releases/tag/zh_core_web_lg-3.3.0
 - https://github.com/explosion/spacy-models/releases/tag/zh_core_web_trf-3.3.0
 
-方法2：
+方法2：修改分词库
+方法3：自定义命名实体规则
 
 
 # 做中文项目所需要用到的
